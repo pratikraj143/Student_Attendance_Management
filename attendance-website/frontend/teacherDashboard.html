@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/teacherDashboard.css">
+  <!-- Add SheetJS library for Excel export -->
+  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h2>Welcome Teacher</h2>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="main-content">
+    <div class="button-group">
+      <button class="btn btn-primary" onclick="approveStudents()">Approve Students</button>
+      <button class="btn btn-primary" onclick="fetchAttendanceData()">Show Attendance List</button>
+      <button class="btn btn-success" onclick="exportToExcel()" id="exportBtn" style="display: none;">Export to Excel</button>
+    </div>
+
+    <div id="output" style="display: none;"></div>
+    <div id="attendanceTableContainer">
+      <table id="attendanceTable" class="attendance-table" style="display: none;">
+        <thead>
+          <tr>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Status</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody id="attendanceTableBody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <p>Copyright &copy; 2025 Pratik, Amrish, Kamlesh All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function approveStudents() {
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = 'Approve student list here...';
+      outputDiv.style.display = 'block';
+      document.getElementById('attendanceTable').style.display = 'none';
+      document.getElementById('exportBtn').style.display = 'none';
+    }
+
+    async function fetchAttendanceData() {
+      try {
+        console.log('Attempting to fetch attendance data...');
+        const response = await fetch('http://localhost:5000/api/attendance/list');
+        console.log('Response status:', response.status);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Received data:', data);
+        
+        if (data.success) {
+          document.getElementById('output').style.display = 'none';
+          displayAttendanceData(data.attendance);
+          document.getElementById('exportBtn').style.display = 'block';
+        } else {
+          alert('Failed to fetch attendance data: ' + (data.message || 'Unknown error'));
+        }
+      } catch (error) {
+        console.error('Error details:', error);
+        alert('Error fetching attendance data. Please check the console for details.');
+      }
+    }
+
+    function displayAttendanceData(attendanceList) {
+      const tableBody = document.getElementById('attendanceTableBody');
+      const table = document.getElementById('attendanceTable');
+      
+      tableBody.innerHTML = '';
+      attendanceList.forEach(record => {
+        const row = tableBody.insertRow();
+        
+        // Split the Name field into roll number and name
+        const [rollNo, name] = record.Name.split('_');
+        
+        row.insertCell(0).textContent = rollNo;  // Roll No
+        row.insertCell(1).textContent = name;    // Name
+        row.insertCell(2).textContent = record.Subject;
+        row.insertCell(3).textContent = record.Status;
+        row.insertCell(4).textContent = new Date(record.Timestamp).toLocaleString();
+      });
+      
+      table.style.display = 'table';
+    }
+
+    function exportToExcel() {
+      const rows = [];
+      rows.push(['Roll No', 'Name', 'Subject', 'Status', 'Timestamp']);
+      
+      const tableBody = document.getElementById('attendanceTableBody');
+      const tableRows = tableBody.getElementsByTagName('tr');
+      
+      for (let i = 0; i < tableRows.length; i++) {
+        const cells = tableRows[i].getElementsByTagName('td');
+        rows.push([
+          cells[0].textContent,
+          cells[1].textContent,
+          cells[2].textContent,
+          cells[3].textContent,
+          cells[4].textContent
+        ]);
+      }
+      
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.aoa_to_sheet(rows);
+      XLSX.utils.book_append_sheet(wb, ws, "Attendance");
+      XLSX.writeFile(wb, `attendance_${new Date().toISOString().split('T')[0]}.xlsx`);
+    }
+
+    function logout() {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web-Based Attendance System | NIT Kurukshetra</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">Attendance System using Face Recognition</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="javascript:void(0);" id="contact-btn">Contact Us</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Welcome to <span>NIT Kurukshetra</span></h1>
+      <p>Web-Based Attendance System using Face Recognition</p>
+      <a href="login.html" class="cta">Get Started</a>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About NIT Kurukshetra</h2>
+      <p>
+        National Institute of Technology, Kurukshetra is a premier technical institute established in 1963.
+        Renowned for excellence in engineering and innovation, NIT KKR is dedicated to creating future-ready professionals.
+        This Smart Attendance System enhances student tracking and management using modern digital tools.
+        <br><br>
+        <a href="https://nitkkr.ac.in/" target="_blank" style="color: #00d4ff;">Visit Official Website</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="contact-content">
+      <h2>Contact Us</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <strong>Amrish Kumar</strong><br>
+          523410034@nitkkr.ac.in<br>
+          +91 9026339336
+        </div>
+        <div class="contact-item">
+          <strong>Pratik Raj</strong><br>
+          523110057@nitkkr.ac.in<br>
+          +91 7082980041
+        </div>
+        <div class="contact-item">
+          <strong>Kamlesh Gehlot</strong><br>
+          523410011@nitkkr.ac.in<br>
+          +91 9685250812
+        </div>
+      </div>
+      <p>
+        <a href="https://nitkkr.ac.in/" target="_blank" class="website-link">Official Website</a>
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 Kamlesh Gehlot, Pratik Raj, Amrish Kumar. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll smooth effect on navigation links
+    const scrollLinks = document.querySelectorAll('nav a');
+
+    scrollLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+
+        window.scrollTo({
+          top: targetSection.offsetTop - 80, // for fixed header
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Contact Us slide-in effect
+    const contactBtn = document.getElementById('contact-btn');
+    const contactSection = document.getElementById('contact');
+
+    contactBtn.addEventListener('click', function () {
+      contactSection.classList.toggle('show');
+    });
+
+    // Animation for hero text
+    window.addEventListener('load', () => {
+      const heroContent = document.querySelector('.hero-content');
+      heroContent.classList.add('animate');
+    });
+  </script>
+</body>
+</html>

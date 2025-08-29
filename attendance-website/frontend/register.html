@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="css/register.css">
+</head>
+<body class="custom-bg">
+  <header class="custom-header">
+    <a href="index.html" class="home-btn">🏠 Home</a>
+  </header>
+  <div class="form-container modern-form">
+    <h2>Register</h2>
+    <form id="registerForm" enctype="multipart/form-data">
+      <label for="userId">User ID</label>
+      <input type="text" id="userId" name="userId" required>
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="roll">Roll No</label>
+      <input type="text" id="roll" name="roll" required>
+
+      <label for="course">Course</label>
+      <input type="text" id="course" name="course" required>
+
+      <label for="year">Year</label>
+      <input type="number" id="year" name="year" required min="1" max="5" class="full-width">
+
+      <label for="semester">Semester</label>
+      <input type="number" id="semester" name="semester" required min="1" max="10" class="full-width">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="studentPhoto">Upload Image</label>
+      <input type="file" id="studentPhoto" name="studentPhoto" accept="image/*">
+
+      <button type="submit" class="btn modern-btn">Register</button>
+    </form>
+    <div id="registerMsg"></div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>

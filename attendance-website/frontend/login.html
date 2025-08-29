@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="header">
+    <a href="index.html" class="home-btn">🏠 Home</a>
+  </div>
+  <div class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="userId">User ID</label>
+      <input type="text" id="userId" name="userId" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+      <label for="role">Role</label>
+      <select id="role" name="role" required>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button type="submit" class="btn">Login</button>
+    </form>
+    <div id="loginMsg"></div>
+    <p style="margin-top:16px;">Don't have an account?
+      <a href="register.html" style="color:#457b9d; text-decoration:underline; font-weight:500;">Register here</a>
+    </p>
+  </div>
+  <footer>
+    <p>Copyright &copy; 2025 Pratik, Amrish, Kamlesh All Rights Reserved.</p>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

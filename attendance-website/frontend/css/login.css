@@ -1,0 +1,166 @@
+/* login.css - Modern glassy neon blue/purple login page with Home button and correct background image */
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, rgba(16,18,38,0.97) 0%, rgba(36,16,80,0.98) 100%),
+    url('css/pg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #eaf6fb;
+}
+
+.header-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 32px 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.home-btn {
+  background: linear-gradient(90deg, #3c8ee6 0%, #7f53ac 100%);
+  color: #fff;
+  border-radius: 22px;
+  padding: 10px 32px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.13em;
+  margin-top: 10px;
+  margin-left: 32px;
+  box-shadow: 0 2px 14px #3c8ee655;
+  border: none;
+  letter-spacing: 0.03em;
+  transition: background 0.22s, color 0.22s, box-shadow 0.22s;
+  outline: none;
+  display: inline-block;
+}
+.home-btn:hover {
+  background: linear-gradient(90deg, #7f53ac 0%, #3c8ee6 100%);
+  color: #fff;
+  box-shadow: 0 6px 24px #7f53ac99;
+}
+
+.form-container {
+  max-width: 500px;
+  margin: 10px auto 0 auto;
+  background: rgba(22, 24, 54, 0.92);
+  border-radius: 28px;
+  box-shadow: 0 8px 40px 0 #3c8ee6cc, 0 2px 8px #7f53ac99;
+  padding: 48px 32px 36px 32px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(18px) saturate(1.5);
+  border: 2.5px solid #3c8ee6;
+  animation: fadeInCard 1s cubic-bezier(.48,1.48,.5,.9);
+  transition: box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.form-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  pointer-events: none;
+  box-shadow: 0 0 40px 5px #7f53ac66, 0 0 0 2px #2e7be6cc inset;
+  opacity: 0.18;
+}
+
+h2 {
+  text-align: center;
+  color: #7f53ac;
+  font-weight: 900;
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+  font-size: 2.05em;
+  text-shadow: 0 2px 22px #3c8ee688;
+}
+
+label {
+  font-weight: 600;
+  color: #8ad8ff;
+  margin-bottom: 4px;
+  display: block;
+  letter-spacing: 0.01em;
+  font-size: 1.06em;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select {
+  width: 100%;
+  padding: 15px 18px;
+  margin: 11px 0 22px 0;
+  border: 2px solid #3c8ee6;
+  border-radius: 13px;
+  background: rgba(16,18,38,0.93);
+  color: #eaf6fb;
+  font-size: 1.09em;
+  box-shadow: 0 2px 12px #3c8ee622;
+  transition: border 0.19s, box-shadow 0.19s, background 0.18s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+input:focus, select:focus {
+  border: 2px solid #7f53ac;
+  background: rgba(22,24,54,1);
+  outline: none;
+  box-shadow: 0 0 8px 2px #7f53ac99;
+}
+
+button, .btn, .modern-btn {
+  background: linear-gradient(90deg, #3c8ee6 0%, #7f53ac 100%);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 16px 0;
+  font-size: 1.16em;
+  font-weight: 900;
+  width: 100%;
+  margin: 18px 0 0 0;
+  cursor: pointer;
+  box-shadow: 0 4px 18px #3c8ee655;
+  transition: background 0.18s, transform 0.16s, box-shadow 0.2s;
+  outline: none;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 12px #7f53ac33;
+}
+button:hover, .btn:hover, .modern-btn:hover {
+  background: linear-gradient(90deg, #7f53ac 0%, #3c8ee6 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 32px #3c8ee699;
+}
+
+#loginMsg {
+  margin-top: 18px;
+  text-align: center;
+  color: #ff3860;
+  font-weight: 700;
+  font-size: 1.08em;
+  text-shadow: 0 2px 12px #ff386055;
+}
+
+@media (max-width: 600px) {
+  .form-container { max-width: 97vw; padding: 28px 4vw 18px 4vw; }
+  h2 { font-size: 1.3em; }
+  .header-bar { padding: 18px 0 0 0; }
+  .home-btn { margin-left: 12px; font-size: 1em; padding: 8px 18px; }
+}
+footer {
+  text-align: center;
+  padding: 0.2rem;
+  background-color: #121212;
+  color: #fff;
+  width: 99.5%;
+  border-radius: 0 0 18px 18px;
+  position: absolute;
+}
